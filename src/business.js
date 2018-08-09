@@ -1,8 +1,8 @@
-export class Filter {
-  replaceBadWords(phrase) {
+export class WeatherService {
+  getWeatherByCity(city) {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
-      let url = `https://www.purgomalum.com/service/json?text=this is some test input`;
+      let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.API_KEY}`;
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);
@@ -15,21 +15,3 @@ export class Filter {
     });
   }
 }
-
-// export class WeatherService {
-//   getWeatherByCity(city) {
-//     return new Promise(function(resolve, reject) {
-//       let request = new XMLHttpRequest();
-//       let url = `https://onwater.io/documentation/swagger.json`;
-//       request.onload = function() {
-//         if (this.status === 200) {
-//           resolve(request.response);
-//         } else {
-//           reject(Error(request.statusText));
-//         }
-//       }
-//       request.open("GET", url, true);
-//       request.send();
-//     });
-//   }
-// }
